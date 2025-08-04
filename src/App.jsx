@@ -46,9 +46,18 @@ const App = () => {
       })
 
       const newActor = await response.json();
-      const newActorsArray = [...actors, newActor];
-      setActors(newActorsArray);
-      
+      if(!newActor.error){
+        const newActorsArray = [...actors, newActor];
+        setActors(newActorsArray);
+        console.log(newActorsArray);
+  
+        setEmailInput('');
+        setName('');
+        setPassword('');
+        setRole('');
+        setAvatar('');
+
+      }
     } catch(err){
       console.log(err);
     }
@@ -63,7 +72,8 @@ const App = () => {
       
       <input 
         type = "email" 
-        placeholder="email" 
+        placeholder="email"
+        value={emailInput} 
         onChange={(event)=> {setEmailInput(event.target.value)}}
       
       ></input>
@@ -71,6 +81,7 @@ const App = () => {
 
       <input 
         placeholder="name"
+        value={name}
         onChange={(event) => setName(event.target.value)}  
       >
         
@@ -79,6 +90,7 @@ const App = () => {
       <input 
         type="password" 
         placeholder="password"
+        value={password}
         onChange={(event) => setPassword(event.target.value)}
       >
 
@@ -86,6 +98,7 @@ const App = () => {
 
       <input 
         placeholder="role"
+        value={role}
         onChange={(event) => setRole(event.target.value)}  
       >
         
@@ -93,6 +106,7 @@ const App = () => {
 
       <input 
         placeholder="avatar"
+        value={avatar}
         onChange={(event) => setAvatar(event.target.value)}  
       >
         
